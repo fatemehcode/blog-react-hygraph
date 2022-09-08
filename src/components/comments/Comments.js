@@ -1,6 +1,7 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-function Comments(props) {
+function Comments({slug}) {
     return (
         <div>
             Comments

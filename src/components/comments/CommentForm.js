@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CommentForm(props) {
+function CommentForm({slug}) {
     return (
         <div>
             CommentForm
