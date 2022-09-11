@@ -90,11 +90,18 @@ const GET_POST_INFO = gql`
 `;
 
 const GET_POST_COMMENTS = gql`
-  query getPostComments($slug: String!) {
-    comments(where: { post: { slug: $slug } }) {
+  query MyQuery ($slug: String!) {
+    comments(where: {post: {slug: $slug}}) {
       id
       name
       text
+      post {
+        author {
+          avatar {
+            url
+          }
+        }
+      }
     }
   }
 `;
@@ -104,5 +111,6 @@ export {
   GET_AUTHORS_INFO,
   GET_AUTHOR_INFO,
   GET_POST_INFO,
-  GET_POST_COMMENTS, GET_ALL_POSTS,
+  GET_POST_COMMENTS,
+  GET_ALL_POSTS,
 };
