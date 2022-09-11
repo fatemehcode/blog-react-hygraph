@@ -2,13 +2,13 @@ import React from 'react';
 import {Avatar,Button,Card,CardActions,CardContent,CardHeader,CardMedia,Divider,Typography,} from "@mui/material";
 import { Link } from "react-router-dom";
 
-function CardEL({author,title,slug,coverPhoto}) {
+function CardEL2({avatar,name,title,slug,coverPhoto}) {
     return (
         <Card sx={{ boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px", borderRadius: 4 }}>
             <CardHeader 
-                avatar={<Avatar src={author.avatar.url} sx={{ margin: 2 }} />}
+                avatar={<Avatar src={avatar} sx={{ margin: 2 }} />}
                 title={<Typography component="p" variant="p" color="text.secondary">
-                        {author.name}
+                        {name}
                     </Typography>
                 } />
             <CardMedia
@@ -48,4 +48,4 @@ function CardEL({author,title,slug,coverPhoto}) {
     );
 }
 
-export default CardEL;
+export default CardEL2;

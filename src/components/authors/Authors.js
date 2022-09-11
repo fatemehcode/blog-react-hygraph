@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { Grid } from '@mui/material';
+import { Avatar, Divider, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 const Authors = () => {
     const GET_ALL_AUTHORS = gql`
         query MyQuery {
@@ -18,13 +19,38 @@ const Authors = () => {
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
   
-    return (
-        <div>
-            {data.authors.map((author) => (
-                <Grid item>{author.name}</Grid>
-            ))}
-        </div>
-    );
-};
+ const { authors } = data;
+  return (
+    <Grid
+      container
+      sx={{ boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px", borderRadius: 4 }}
+    >
+      {authors.map((author, index) => (
+        <React.Fragment key={author.id}>
+          <Grid item xs={12} padding={2}>
+            <Link
+              to={`/authors/${author.slug}`}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                textDecoration: "none",
+              }}
+            >
+              <Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />
+              <Typography component="p" variant="p" color="text.secondary">
+                {author.name}
+              </Typography>
+            </Link>
+          </Grid>
+          {index !== authors.length - 1 && (
+            <Grid item xs={12}>
+              <Divider variant="middle" />
+            </Grid>
+          )}
+        </React.Fragment>
+      ))}
+    </Grid>
+  );
+}
 
 export default Authors;
