@@ -2,19 +2,9 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Avatar, Divider, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { GET_ALL_AUTHORS } from '../../graphql/queries';
 const Authors = () => {
-    const GET_ALL_AUTHORS = gql`
-        query MyQuery {
-            authors {
-                id
-                name
-                slug
-                avatar {
-                url
-                }
-            }
-        }
-    `;
+
     const { loading, error, data } = useQuery(GET_ALL_AUTHORS);
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
